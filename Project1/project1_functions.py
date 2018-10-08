@@ -31,8 +31,6 @@ def Confidence_plot(beta,sigma,X,H,polys,type,lambd):
     fig = plt.figure(figsize=(8, 4))
     plt.errorbar(range(polys),beta,yerr=(beta+2*v_j),fmt="none",elinewidth=1,capsize=3)
     plt.plot(range(polys),beta,'o')
-    #plt.plot(range(polys),beta+2*v_j*0.1,'--',color="g",alpha = 0.5)
-    #plt.plot(range(polys),beta-2*v_j*0.1,'--',color="g",alpha = 0.5)
     plt.legend(["Betas","Confidence interval"])
     plt.title("Confidence interval")
     plt.xlabel("Beta")
@@ -62,10 +60,8 @@ def surfplot(x,y,z):
 def lambda_MSE_plot(lambdas,MSE):
     fig = plt.figure(figsize=(9,4))
     plt.plot(lambdas,MSE)
-    #plt.title("Frankes function Ridge regression")
     plt.xlabel("Lambda")
     plt.ylabel("MSE")
-    #fig.savefig("%s"%filename)
     plt.show()
 
 def showimage(xshape,yshape,z):
@@ -132,10 +128,8 @@ def kfold(x,y,z,k,type,lambd,p):
     m = int(len(x.flatten()))
     X = designmatrix(x.flatten(),y.flatten(),p)
     polys = sum(range(1,p+2)) #Number of polynomials
-    #z += np.random.randn(z.shape[0],z.shape[1])*sigma #adding noise
     z2 = np.zeros(shape=(len(x.flatten())/k,k)) #array of test data
     z2_fit = np.zeros(shape=(len(x.flatten())/k,k)) #Fitted test data
-    #MSE_array = np.zeros(shape=(len(x.flatten())/k,1))
     for i in range(len(x.flatten())/k):
         #Training set with x,y,z[everything up to i*k and everything after k+i*k]
         x_train = np.concatenate((x.flatten()[:(i*k)],x.flatten()[(k+i*k):]))
