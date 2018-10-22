@@ -7,14 +7,14 @@ def neural_activation(x):
 
 def neuralnetwork2D(X,y,x_test,y_test,batch_size,epochs): #minibatching
     np.random.seed(1)
-    eta = 0.0001
+    eta = 0.001
     n_inputs = len(X[0,:])
     n_samples = len(X[:,0])
     n_outputs = 1
     n_hidden1 = 100
-    weights1 = np.random.randn(n_inputs,n_hidden1)*(1/np.sqrt(n_samples))
+    weights1 = np.random.randn(n_inputs,n_hidden1)
     biases1 = np.random.randn(n_hidden1)
-    weights2 = np.random.randn(n_hidden1,n_outputs)*(1/np.sqrt(n_hidden1))
+    weights2 = np.random.randn(n_hidden1,n_outputs)
     biases2 = np.random.randn(n_outputs)
     for k in range(epochs):
         for j in range(int(n_samples/batch_size)):
